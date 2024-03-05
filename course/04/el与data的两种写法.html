@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>hello, {{name}}</h1>
+    </div>
+    
+    <script>
+        const v = new Vue({
+            // el:'#root',
+            // 对象式data写法
+            // data:{
+            //     name:'Enish',
+            // }
+            // 函数式data写法
+            data() {
+                return {
+                    name:'Enish'
+                }
+            },
+        })
+        // 通过此方法挂载el
+        v.$mount("#root")
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../vue.js"></script>
+    <title>Document</title>
+    <style>
+        .basic{
+            height: 50px;
+            width: 500px;
+            border: 1px solid black;
+        }
+        .normal{
+            background-color: cyan;
+            position: absolute;
+            left: 50%;
+        }
+        .happy{
+            background-color: red;
+            position: absolute;
+            left: 50%;
+        }
+        .sad{
+            background-color: greenyellow;
+            position: absolute;
+            left: 50%;
+        }
+        .atguigu1{
+            border-radius: 5px;
+            color: aqua;
+        }
+        .atguigu2{
+            text-align: center;
+        }
+        .atguigu3{
+            text-shadow: 5px 15px;
+        }
+        body{
+            position: relative;
+            background-image: url('./komiya.png');
+            margin-left: 100px;
+            background-repeat: no-repeat;
+            background-position: center -50%;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="root">
+        <!-- 绑定class样式--字符串写法，适用于样式的类名不确定，需要动态指定 -->
+        <div class="basic normal" :class="mood" @click="changeMood">
+            <p>{{name}}</p>
+        </div><br/><br/>
+
+        <!-- 绑定class样式--数组写法，适用于样式的类名和个数都不确定 -->
+        <div class="basic" :class="arr" >
+            <p>{{name}}</p>
+        </div><br/><br/>
+
+        <!-- 绑定class样式--对象写法，适用于样式的类名和个数都确定但是需要动态决定是否启用 -->
+        <div class="basic" :class="classObj" >
+            <p>{{name}}</p>
+        </div><br/><br/>
+        
+    </div>
+    
+    <script>
+        new Vue({
+            el:'#root',
+            data() {
+                return {
+                    name:'Enish',
+                    mood:'',
+                    arr:['atguigu1', 'atguigu2', 'atguigu3'],
+                    classObj:{
+                        atguigu1:false,
+                        atguigu2:false,
+                    }
+                }
+            },
+            methods: {
+                changeMood(){
+                    const arr = ['happy', 'normal', 'sad']
+                    const num = Math.floor(Math.random() * 3)
+                    this.mood = arr[num]
+                }
+            },
+
+        })
+    </script>
+</body>
+</html>

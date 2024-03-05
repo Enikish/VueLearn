@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        姓：<input type="text" value="张" v-model="first_name"><br/>
+        名：<input type="text" value="三" v-model="last_name"><br/>
+        姓名: <span>{{fullName()}}</span>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#root',
+            data() {
+                return {
+                    first_name:'张',
+                    last_name:'三',
+                }
+            },
+            methods: {
+                fullName(){
+                    return this.first_name + '-' + this.last_name
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <h2>今天天气很{{info}}</h2>
+        <button @click="changeWeather">切换天气</button>
+        <h3>a的值是:{{numbers.a}}</h3>
+        <button @click="numbers.a++">点击a+1</button>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#root',
+            data() {
+                return {
+                    isHot: true,
+                    numbers:{
+                        a: 1,
+                        b: 1,
+                    }
+                }
+            },
+            methods: {
+                changeWeather(){
+                    this.isHot = !this.isHot
+                }
+            },
+            computed:{
+                info:{
+                    get(){
+                        return this.isHot ? '炎热' : '凉爽'
+                    }
+                }
+            },
+            watch:{
+                // watch默认只监测data对象的属性，不监测对象内部对象的属性
+                isHot:{
+                    handler(newValue, oldValue){
+                        console.log('newValue', newValue, 'oldValue', oldValue)
+                    }
+                },
+                // 监测numbers对象中的a属性
+                'numbers.a':{
+                    handler(newValue){
+                        console.log('a is', newValue)
+                    }
+                },
+                // 监测numbers对象中的所有属性
+                numbers:{
+                    // 使用deep属性设置深度监视
+                    deep:true,
+                    handler(){
+                        console.log('numbers changed')
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

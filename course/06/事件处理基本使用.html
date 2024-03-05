@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <h2>welcome,{{name}}</h2>
+        <button v-on:click="showInfo">Click me</button>
+        <!-- 使用@click代替简写v-on:click，
+            在click函数后可以直接加上参数列表来实现传参，
+            如果需要保留event则需要显示地写$evnent -->
+        <button @click="msg($event,6)">Check msg</button>
+    </div>
+
+    <script>
+        new Vue({
+            el:"#root",
+            data() {
+                return {
+                    name:'Enish'
+                }
+            },
+            methods: {
+                showInfo(){
+                    alert('Hello')
+                },
+                msg(event, number){
+                    alert(number)
+                    console.log(event)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

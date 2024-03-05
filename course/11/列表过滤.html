@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <input type="text" placeholder="输入名字" v-model="KeyWord">
+        <ul>
+            <li v-for="(person, index) in filPersons" :key="index">
+                {{person.name}}-{{person.age}}-{{person.sex}}
+            </li>
+        </ul>
+    </div>
+    
+    <script>
+        new Vue({
+            el:'#root',
+            data() {
+                return {
+                    KeyWord:'',
+                    persons:[
+                        {name: '周杰伦', age: '40', sex: '男'},
+                        {name: '温兆伦', age: '39', sex: '男'},
+                        {name: '马冬梅', age: '30', sex: '女'},
+                        {name: '周冬雨', age: '20', sex: '女'},
+                        ],
+                    filPersons:[],
+                }
+            },
+            watch:{
+                KeyWord:{
+                    // 添加immediate属性，设置为初始化时调用一次handler
+                    immediate:true,
+                    handler(newValue, oldValue){
+                        this.filPersons = this.persons.filter((p)=>{
+                            return p.name.indexOf(newValue) !== -1
+                        })
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../vue.js"></script>
+    <style>
+        *{
+            margin-top: 10px;
+        }
+        .demo{
+            height: 50px;
+            background-color: aqua;
+        }
+        .demo2{
+            height: 50px;
+            background-color: antiquewhite;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <h2>welcome,{{name}}</h2>
+        <!-- 事件修饰符
+            1.prevent: 阻止默认事件
+            2.stop: 阻止事件冒泡
+            3.once: 事件只触发一次
+            4.capture: 使用事件的捕获模式
+            5.self: 只有event.target是当前操作的元素时才触发事件
+            6.passive: 事件的默认行为立即执行，无需等待事件回调执行完毕
+            !! 修饰符可以连续使用，例如@click.stop.prevent
+         -->
+         <!-- 此处不使用prevent会跳转到百度 -->
+        <a :href="url" @click.prevent="showInfo">Click to trans</a>
+
+        <!-- 此处不使用stop，会因为嵌套定义重复执行showInfo -->
+        <div class="demo" @click="showInfo">
+            <button @click.stop="showInfo">Click</button>
+        </div>
+        
+        <!-- 此处使用self修饰
+            使外层的div只有在点击div本身时,才会调用div层的showMsg
+            使用self修饰只会当元素本身被触发时才会执行绑定的事件回调函数
+         -->
+        <div @click.self="showMsg(1)" class="demo2">
+            <button @click="showMsg(2)">Self</button>
+        </div>
+        
+    </div>
+
+    <script>
+        new Vue({
+            el:"#root",
+            data() {
+                return {
+                    name:'Enish',
+                    url:'https://www.baidu.com'
+                }
+            },
+            methods: {
+                showInfo(){
+                    alert('Hello')
+                },
+                showMsg(number){
+                    console.log(number)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>welcome, {{name}}</h2>
+        <!-- 此处使用@keyup.enter表示只有松开enter键才会触发回调
+            .enter称为别名，常用的别名有如下：
+            回车: enter
+            删除: delete
+            退出: esc
+            空格: space
+            换行: tab
+            上: up
+            下: down
+            左: left
+            右: right
+         -->
+        <input type="text" placeholder="按下回车提示输入" @keyup.enter="showInfo">
+    </div>
+    
+    <script>
+        new Vue({
+            el:'#root',
+            data() {
+                return {
+                    name:'Enish',
+                }
+            },
+
+            methods: {
+                showInfo(event){
+                    console.log(event.target.value)
+                }
+            },
+        })
+    </script>
+</body>
+</html>
