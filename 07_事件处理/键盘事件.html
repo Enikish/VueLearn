@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+
+    <div id="root">
+        <h2>Welcome,{{name}}</h2>
+        <!-- .enter判断是否输入enter键 -->
+        <input type="text" placeholder="按下回车输入" @keyup.enter="showInfo">
+    </div>
+
+    <script>
+        new Vue({
+            el:'#root',
+            data() {
+                return {
+                    name: 'Enish',
+                }
+            },
+            methods: {
+                showInfo(e){
+                    console.log(e.target.value);
+                }
+            },
+        })
+    </script>
+    
+</body>
+</html>

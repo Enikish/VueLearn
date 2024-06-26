@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+
+    <div id="root">
+        <h2>欢迎来到{{name}}</h2>
+        <!-- prevent阻止默认事件
+             stop阻止事件冒泡
+             once事件只触发一次
+             capture使用事件的捕获模式
+             self只有event.target是当前操作的元素才能触发事件
+             passive事件的默认行为立即执行，无需等待事件回调执行 -->
+        <a href="http://www.baidu.com" @click.prevent="showInfo">提示信息</a>
+
+        <div class="demo1" @click="showInfo">
+            <button @click.stop="showInfo">提示信息</button>
+        </div>
+
+    </div>
+    
+    <script>
+        new Vue({
+            el:'#root',
+            data() {
+                return {
+                    name: '尚硅谷',
+                }
+            },
+            methods: {
+                showInfo()
+                {
+                    alert('hello')
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+
+    <div id="root">
+        <h2>欢迎来到{{name}}</h2>
+        <button v-on:click="showInfo">点击提示信息</button>
+        <!-- 用$event占位，接受event参数，不使用$就会丢失event -->
+        <button @click="showInfo2($event,'param')">点击提示信息2</button>
+
+    </div>
+    
+    <script>
+        new Vue({
+            el:'#root',
+            data() {
+                return {
+                    name: '尚硅谷',
+                }
+            },
+            methods: {
+                showInfo(){
+                    alert('Hello')
+                },
+                showInfo2(ev, param){
+                    console.log(ev,param);
+                    alert('Hi')
+                }
+            },
+        })
+    </script>
+</body>
+</html>

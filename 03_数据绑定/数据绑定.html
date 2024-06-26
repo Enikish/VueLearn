@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+
+    <div id="root">
+        单向绑定<input type="text" :value="name">
+        <br>
+        <!-- 双向绑定只能用于输入类的标签 -->
+        双向绑定<input type="text" v-model:value="short_name">
+
+    </div>
+    
+    <script>
+        new Vue({
+            el:'#root',
+            data:{
+                name: 'Enish',
+                short_name: 'KJ',
+            }
+            
+        })
+    </script>
+</body>
+</html>
