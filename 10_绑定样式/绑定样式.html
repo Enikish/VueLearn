@@ -14,12 +14,21 @@
         .normal{
             background-color: cyan;
         }
+        .atguigu1{
+            background-color: greenyellow;
+        }
+        .atguigu2{
+            font-size: larger;
+            font-weight: 100;
+        }
     </style>
 </head>
 <body>
     
     <div id="root">
         <div class="basic" :class="mood" @click="changeMood">{{name}}</div>
+        <div class="basic" :class="classObj" @click="changeMood">{{name}}</div>
+        <div class="basic" :style="styleObj" @click="changeMood">{{name}}</div>
     </div>
 
     <script>
@@ -29,6 +38,15 @@
                 return {
                     name: 'Enish',
                     mood: '',
+                    classObj:{
+                        atguigu1: true,
+                        atguigu2: true,
+                    },
+                    styleObj:{
+                        // 在设置style的属性时，只能指定原生有的属性，例如color，background-color，但是在多单词组成的属性中，需要用驼峰代替特殊字符'-'
+                        color: 'green',
+                        backgroundColor: 'purple',
+                    }
                 }
             },
             methods: {
