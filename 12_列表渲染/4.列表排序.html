@@ -20,7 +20,7 @@
             
         </div>
         <script type="text/javascript">
-            new Vue({
+            const vm = new Vue({
             el: '#root',
             data: {
                 keyWord: '',
@@ -37,16 +37,23 @@
                 keyWord:{
                     immediate:true,
                     handler(newValue){
-                        const arr = this.persons.filter((p)=>{
+                        this.filPersons = this.persons.filter((p)=>{
                             return p.name.indexOf(newValue) !== -1;
                         })
-                        if(this.sortType)
+                    }
+                },
+                sortType:{
+                    immediate: true,
+                    handler(val){
+                        if(val)
                         {
-                            arr.sort((p1, p2)=>{
-                                return this.sortType === 1 ? p2.age-p1.age : p1.age-p2.age;
-                            })
+                            this.filPersons.sort((p1, p2)=>{
+                                return val === 1 ? p2.age-p1.age : p1.age-p2.age;
+                            });
                         }
-                        this.filPersons = arr;
+                        else{
+                            this.filPersons = [...this.persons];
+                        }
                     }
                 }
             },
