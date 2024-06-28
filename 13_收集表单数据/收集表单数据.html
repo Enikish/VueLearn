@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+    <body>
+        <div id="root">
+            <form  @submit.prevent="demo">
+                <!-- 这个方式可以在点击'账号'的时候聚焦到input框内 -->
+                <label for="account_input">账号: </label>
+                <input type="text" id="account_input" v-model.trim="account"><br>
+                <label for="password_input">密码: </label>
+                <input type="password" id="password_input" v-model="password"><br>
+                <label for="age_input">年龄: </label>
+                <input type="text" id="age_input" v-model.number="age"><br>
+                性别:<br>
+                男<input type="radio" name="sex" v-model="sex" value="male">
+                女<input type="radio" name="sex" v-model="sex" value="female"><br>
+                爱好:<br>
+                学习<input type="checkbox" name="hobby" v-model="hobby" value="learn"><tr></tr>
+                打游戏<input type="checkbox" name="hobby" v-model="hobby" value="play"><tr></tr>
+                吃饭<input type="checkbox" name="hobby" v-model="hobby" value="eat"><br>
+
+                所属校区:
+                <select v-model="city">
+                    <option value="">请选择校区</option>
+                    <option value="beijing">北京</option>
+                    <option value="shanghai">上海</option>
+                    <option value="shenzhen">深圳</option>
+                    <option value="wuhan">武汉</option>
+                </select><br>
+                其他信息:
+                <textarea v-model.lazy="other"></textarea><br>
+
+                阅读并接受 <input type="checkbox" v-model="agree"><a href="" >用户协议</a>
+                <button>提交</button>
+                
+            </form>
+
+            
+        </div>
+        <script type="text/javascript">
+            new Vue({
+            el: '#root',
+            data: {
+                account: '',
+                password: '',
+                age: 0,
+                sex: '',
+                hobby: [],
+                city: '',
+                other: '',
+                agree: '',
+            },
+            methods: {
+                demo(){
+                    console.log(JSON.stringify(this._data));
+                }
+            },
+            })
+        </script>
+    </body>
+</head>
+</html>

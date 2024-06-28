@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+    <body>
+
+        <!-- 有过的指令:
+            v-bind: 单项绑定
+            v-model: 双向数据绑定
+            v-for: 遍历
+            v-on: 事件监听, 可简写为@
+            v-if: 条件渲染
+            v-else-if: 条件渲染
+            v-else: 条件渲染
+            v-show: 条件渲染
+        -->
+
+        <div id="root">
+            <div>{{name}}</div>
+            <!-- v-text只将内容作为plain-text，不会解析内容格式 -->
+            <div v-text="name"></div>
+            <!-- v-html可以解析内容格式 -->
+            <div v-html="str"></div>
+            
+        </div>
+        <script type="text/javascript">
+            new Vue({
+                el: '#root',
+                data: {
+                    name: 'Enish',
+                    str: '<h3>hello</h3>',
+                },
+            })
+        </script>
+    </body>
+</head>
+</html>
