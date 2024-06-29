@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+    <body>
+        <div id="root">
+            <h2 :style="{opacity}">welcome</h2>
+            
+        </div>
+        <script type="text/javascript">
+            new Vue({
+                el: '#root',
+                data: {
+                    opacity: 1,
+                },
+                // vue完成模板解析并放入真实DOM后调用mounted
+                mounted() {
+                    let accelaration = 0.01;
+                    setInterval(() => {
+                        this.opacity -= accelaration;
+                        if(this.opacity <= 0){
+                            accelaration *= -1;
+                        }
+                        else if(this.opacity >= 1){
+                            accelaration *= -1;
+                        }
+                    }, 30);
+                },
+
+            })
+        </script>
+    </body>
+</head>
+</html>

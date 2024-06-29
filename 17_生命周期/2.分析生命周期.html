@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+    <body>
+        <div id="root">
+            <h2>当前的n值是:{{n}}</h2>
+            <button @click="add">点我n+1</button>
+        </div>
+        <script type="text/javascript">
+            new Vue({
+                el: '#root',
+                data: {
+                    n: 1,
+                },
+                methods: {
+                    add(){
+
+                    },
+                },
+
+                /**
+                 * 
+                 *  var LIFECYCLE_HOOKS = [
+                    'beforeCreate',
+                    'created',
+                    'beforeMount',
+                    'mounted',
+                    'beforeUpdate',
+                    'updated',
+                    'beforeDestroy',
+                    'destroyed',
+                    'activated',
+                    'deactivated',
+                    'errorCaptured',
+                    'serverPrefetch',
+                    'renderTracked',
+                    'renderTriggered'
+                ];
+                */
+
+                // 在初始化事件和生命周期之后调用，此时还不能访问到vue._data或者methods
+                // 此处的create指代数据监测和数据代理
+                beforeCreate() {
+                    
+                },
+                
+                created() {
+                    
+                },
+
+                // 此时DOM结构还未经编译，所有的DOM的操作最终都不奏效
+                beforeMount() {
+                    
+                },
+
+                // 此时DOM已经过编译,此时对DOM的操作均有效。通常在此处执行：开启定时器、发送网络信息、消息订阅、绑定自定义事件等
+                mounted() {
+                    
+                },
+
+                // 此时数据已经更新，但是在页面上是旧数据。页面尚未和数据保持同步
+                beforeUpdate() {
+                    
+                },
+
+                // 此时数据更新了，页面也更新了。数据和页面保持同步
+                updated() {
+                    
+                },
+
+                // 此时vm所有的data、methods、指令等都处于可用状态，马上要执行销毁。一般在此阶段执行：关闭定时器、取消订阅消息、接触自定义事件等
+                beforeDestroy() {
+                    
+                },
+            })
+        </script>
+    </body>
+</head>
+</html>
