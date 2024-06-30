@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+    <body>
+
+        <!--
+            关于VueComponent
+            school组件本质是一个名为VueComponent的构造函数，且不是程序员定义的，是Vue.extend生成的
+            每次调用Vue.extend()返回的都是一个new VueComponent
+
+            关于this指针
+            在组件配置中，data、methods、watch、computed里的this均是 VueComponent实例对象
+
+            new Vue()配置中，data、methods、watch、computed里的this均是 Vue实例对象
+         -->
+        
+        <div id="root">
+            
+            
+        </div>
+        <script type="text/javascript">
+
+            const school = Vue.extend({
+                // 使用name属性，在vue开发者工具中就显示的该名称
+                name: 'atguigu',
+                template:`
+                    <div>
+                        <h2>学校名称:{{schoolName}}</h2>
+                        <h2>学校地址:{{address}}</h2>    
+                    </div>
+                `,
+
+                // 组件定义时，不能写el配置项，因为组件最终会被一个vm管理，由vm决定
+                data() {
+                    return {
+                        schoolName: '尚硅谷',
+                        address: '北京昌平',
+                    }
+                },  
+            })
+
+            new Vue({
+                el: '#root',
+                data: {
+                    
+                },
+                comments:{
+                    school:school,
+                },
+            })
+        </script>
+    </body>
+</head>
+</html>

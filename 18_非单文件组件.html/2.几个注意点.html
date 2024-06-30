@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+    <body>
+        <div id="root">
+            <h1>{{msg}}</h1>
+            <school></school>
+
+        </div>
+        <script type="text/javascript">
+            // 创建school组件
+            // 关于组件名：
+            // 如果是一个单词, 可以用全小写(school), 或首字母大写(School)
+            // 如果是多个单词, 可以用'-'分隔(my-school), 或用驼峰命名法, 但是需要用脚手架支持
+
+            const school = Vue.extend({
+                // 使用name属性，在vue开发者工具中就显示的该名称
+                name: 'atguigu',
+                template:`
+                    <div>
+                        <h2>学校名称:{{schoolName}}</h2>
+                        <h2>学校地址:{{address}}</h2>    
+                    </div>
+                `,
+
+                // 组件定义时，不能写el配置项，因为组件最终会被一个vm管理，由vm决定
+                data() {
+                    return {
+                        schoolName: '尚硅谷',
+                        address: '北京昌平',
+                    }
+                },  
+            })
+
+            new Vue({
+                el: '#root',
+                data: {
+                    msg:'欢迎',
+                },
+                components:{
+                    school:school,
+                }
+            })
+        </script>
+    </body>
+</head>
+</html>

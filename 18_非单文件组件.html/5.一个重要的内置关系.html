@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+    <body>
+        <div id="root">
+            
+            
+        </div>
+        <script type="text/javascript">
+
+            const school = Vue.extend({
+                // 使用name属性，在vue开发者工具中就显示的该名称    
+                name: 'atguigu',
+                template:`
+                    <div>
+                        <h2>学校名称:{{schoolName}}</h2>
+                        <h2>学校地址:{{address}}</h2>    
+                    </div>
+                `,
+
+                // 组件定义时，不能写el配置项，因为组件最终会被一个vm管理，由vm决定
+                data() {
+                    return {
+                        schoolName: '尚硅谷',
+                        address: '北京昌平',
+                    }
+                },  
+            })
+            
+            new Vue({
+                el: '#root',
+                data: {
+                    
+                },
+            })
+        </script>
+    </body>
+</head>
+</html>
