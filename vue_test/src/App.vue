@@ -2,8 +2,8 @@
   <div id="app">
     <div class="todo-container">
         <div class="todo-wrap">
-            <MyHeader/>
-            <MyList/>
+            <MyHeader :addTodo="addTodo"/>
+            <MyList :todos="todos" :checkTodo="checkTodo"/>
             <MyFooter/>
         </div>
     </div>
@@ -18,8 +18,13 @@ import MyListVue from './components/MyList.vue'
 
 export default {
     name: 'App',
-    data(){
-        return{
+    data() {
+        return {
+            todos:[
+                {id: '001', title: '吃饭', done: true},
+                {id: '002', title: '睡觉', done: true},
+                {id: '003', title: '开车', done: false},
+            ]
         }
     },
     components:{
@@ -27,7 +32,18 @@ export default {
         MyFooter: MyFooterVue,
         MyList: MyListVue,
     },
-
+    methods:{
+        addTodo(e){
+            this.todos.unshift(e)
+        },
+        
+        checkTodo(id){
+            this.todos.forEach((todo)=>{
+                if(todo.id === id) todo.done = !todo.done
+            })
+        }
+        
+    }
 }
 </script>
     
