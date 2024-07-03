@@ -3,6 +3,8 @@
     <h2>{{ name }}</h2>
     <h2>{{ age }}</h2>
     <button @click="sendStudentName">把学生名给app</button>
+    <button @click="unbind">解绑atguigu事件</button>
+    <button @click="death">点击销毁当前Student组件实例</button>
   </div>
 </template>
 
@@ -19,6 +21,12 @@ export default {
         sendStudentName(){
             // 发送信号
             this.$emit('atguigu', this.name)
+        },
+        unbind(){
+            this.$off(['atguigu', ]);
+        },
+        death(){
+            this.$destroy();
         }
     },
     

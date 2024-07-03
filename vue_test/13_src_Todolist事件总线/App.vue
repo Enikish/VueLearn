@@ -3,7 +3,7 @@
     <div class="todo-container">
         <div class="todo-wrap">
             <MyHeader @addTodo="addTodo"/>
-            <MyList :todos="todos" :deleteTodo="deleteTodo"/>
+            <MyList :todos="todos"/>
             <!-- 数据传输用 v-bind形式， 事件传输用@event形式， 以区分 -->
             <MyFooter :todos="todos" @checkAllTodo="checkAllTodo" @clearAllTodo="clearAllTodo"/>
         </div>
@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import pubsub from 'pubsub-js'
-
 import MyFooterVue from './components/MyFooter.vue'
 import MyHeaderVue from './components/MyHeader.vue'
 import MyListVue from './components/MyList.vue'
@@ -40,16 +38,6 @@ export default {
                 return todo.id !== id
             });
         },
-        checkTodo(id){
-            this.todos.forEach((todo)=>{
-                if(todo.id === id) todo.done = !todo.done
-            })
-        },
-        updateTodo(id, title){
-            this.todos.forEach((todo)=>{
-                if(todo.id === id) todo.title = title
-            })
-        },
         checkAllTodo(done){
             this.todos.forEach((todo)=>{
                 todo.done = done
@@ -59,7 +47,7 @@ export default {
             this.todos = this.todos.filter((todo)=>{
                 return !todo.done;
             })
-        },
+        }
     },
     watch:{
         todos:{
@@ -70,11 +58,10 @@ export default {
         }
     },
     mounted(){
-        this.pubId = pubsub.subscribe('deleteTodo', this.deleteTodo);
-        this.$bus.$on('updateTodo', this.updateTodo);
-    },
-    beforeDestroy(){
-        pubsub.unsubcribe(this.pubId);
+        this.$bus.$on('checkTodo', (data)=>{
+            console.log('Todo chceked', data);
+            this.deleteTodo(data);
+        })
     }
 }
 </script>
@@ -108,13 +95,6 @@ export default {
     .btn-danger:hover{
         color: #fff;
         background-color: #bd362f;
-    }
-
-    .btn-edit{
-        color: #fff;
-        background-color: skyblue;
-        border: 1px solid rgb(103, 159, 180);
-        margin-right: 5px;
     }
 
     .btn:focus{
