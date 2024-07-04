@@ -6,7 +6,9 @@
             <input type="text" 
                 :value="todo.title" 
                 v-show="todo.isEdit" 
-                @blur="handleBlur(todo, $event)">
+                @blur="handleBlur(todo, $event)"
+                ref="inputTitle"
+                >
         </label>
         <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
         <button class="btn btn-edit" @click="handleEdit(todo)" >编辑</button>
@@ -31,6 +33,10 @@ export default {
             else{
                 this.$set(todo, 'isEdit', true);
             }
+            // $nextTick是在下一次DOM更新的时候调用回调
+            this.$nextTick(()=>{
+                this.$refs.inputTitle.focus();
+            })
         },
         handleBlur(todo, e){
             todo.isEdit = false;
