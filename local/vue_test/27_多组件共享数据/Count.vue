@@ -1,6 +1,7 @@
 <template>
   <div class="category">
-    <h1>当前求和为： {{ $store.state.sum }}</h1>    
+    <h1>当前求和为: {{ sum }}</h1>    
+    <h1>当前求和放大十倍为: {{ $store.getters.bigSum }}</h1>    
     <select v-model.number="n">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -14,6 +15,7 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
 export default {
     name: 'Count',
     data() {
@@ -37,8 +39,11 @@ export default {
             setTimeout(()=>{
                 this.$store.dispatch('jia', this.n);
             }, 500)
-        }
-    }
+        },
+    },
+    computed:{
+        ...mapState({'sum': 'sum', 'school': 'school', }) // 此处的...语法和python的元组或字典解包一样
+    },
 }
 </script>
 

@@ -1,14 +1,13 @@
 import Vue from "vue";
-import store from './store'
 import App from "./App.vue";
 
 Vue.config.productionTip = false;
+import VueRouter from "vue-router";
+import router from './router/index'
 
+Vue.use(VueRouter);
 
 new Vue({
-    store,
-    beforeCreate(){
-        Vue.prototype.$bus = this // 创建bus
-    },
+    router,
     render: h => h(App),
 }).$mount('#root');

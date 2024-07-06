@@ -24,6 +24,13 @@ const mutations = {
     },
 }
 
+// 准备getters 用于将state的数据加工
+const getters = {
+    bigSum(state){
+        return state.sum * 10;
+    }
+}
+
 // 准备state, 用于存储数据
 const state = {
     sum: 0, //当前的和
@@ -34,4 +41,5 @@ export default new Vuex.Store({
     actions: actions,
     mutations: mutations,
     state: state,
+    getters: getters,
 })
