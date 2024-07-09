@@ -10,20 +10,10 @@
                     <a href="" class="list-group-item">Home</a> -->
 
                     <!-- 使用router-link代替a标签 -->
-                    <!-- 使用replace属性，替换当前历史记录，成为栈底，不能再回退操作 -->
-                    <router-link 
-                        replace
-                        :to="{
-                            name: 'guanyu',
-                        }" 
-                        class="list-group-item" active-class="active">
+                    <router-link to="/about" class="list-group-item" active-class="active">
                         About
                     </router-link>
-                    <router-link 
-                        replace
-                        to="/home" 
-                        class="list-group-item" 
-                        active-class="active">
+                    <router-link to="/home" class="list-group-item" active-class="active">
                       Home
                     </router-link>
                     
