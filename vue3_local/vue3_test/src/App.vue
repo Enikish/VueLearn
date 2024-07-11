@@ -27,6 +27,25 @@ export default {
       salary: '30k',
     })
 
+    let person = {
+      name: '李四',
+      age: 19,
+    }
+
+    const p = new Proxy(person,{
+      get(target, attr){
+        console.log(`读取了${target}的${attr}属性`);
+        return target[attr];
+      },
+      set(target, attr, value){
+        console.log(`修改了${target}的${attr}为${value}`);
+        target[attr] = value;
+      },
+      deleteProperty(target, attr){
+        console.log(`删除了${attr}属性`);
+        return delete target[attr];
+      }
+    })
 
     // 方法
     function sayHello(){
@@ -36,8 +55,8 @@ export default {
     function changeInfo(){
       name.value =  '李四'
       age.value = 19
-      job.value.type = '后端'
-      job.value.salary = '80k'
+      job.type = '后端'
+      job.salary = '80k'
     }
 
     return {
@@ -46,6 +65,7 @@ export default {
       job,
       sayHello,
       changeInfo,
+      p,
     }
 
     // 返回渲染函数
